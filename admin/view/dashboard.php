@@ -20,7 +20,7 @@ $setores = $controllerUsuario->setores();
 
 <head>
     <meta charset="utf-8">
-    <title>Clínica Escola Gilberto Gomes de Oliveira</title>
+    <title>SERENE - GESTOR</title>
     <meta name="author" content="NDW - Núcleo de Desenvolvimento Web">
     <meta name="reply-to" content="web@unirios.edu.br">
     <meta name="robots" content="noindex,nofollow">
@@ -31,7 +31,7 @@ $setores = $controllerUsuario->setores();
 <body id="pag-login">
     <div id="container-login">
         <?php include '../includes/menu.php'; ?>
-        
+
         <?php foreach ($setores as $setor) { 
             $media_setor = $controllerUsuario->getMediaRespostasMes($setor['setor_id']); ?>
             <div>

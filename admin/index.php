@@ -31,7 +31,7 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_senha'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Clínica Escola Gilberto Gomes de Oliveira</title>
+    <title>SERENE - GESOTR</title>
     <meta name="author" content="NDW - Núcleo de Desenvolvimento Web">
     <meta name="reply-to" content="web@unirios.edu.br">
     <meta name="robots" content="noindex,nofollow">

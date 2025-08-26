@@ -27,19 +27,13 @@ if (isset($_POST['pergunta1']) && isset($_POST['pergunta2']) && isset($_POST['pe
 
 <head>
     <meta charset="utf-8">
-    <title>Colégio Sete - Escolinhas Esportivas e Cursos Livres</title>
+    <title>SERENE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="GTEC - Gerência de Tecnologia">
     <meta name="reply-to" content="web@unirios.edu.br">
     <meta name="robots" content="noindex,nofollow">
-    <meta name="preview" content="https://web.colegiosete.com.br/c7escolinhas/home/images/colegio_sete_rede_social.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:url" content="https://www.colegiosete.com.br/escolinhas">
-    <meta property="og:site_name" content="Colégio Sete">
-    <meta property="og:title" content="Colégio Sete - Escolinhas Esportivas e Cursos Livres">
-    <meta property="og:description" content="Colégio Sete - Escolinhas Esportivas e Cursos Livres">
-    <meta property="og:image" content="https://web.colegiosete.com.br/c7escolinhas/home/images/colegio_sete_rede_social.png">
     <link rel="icon" href="images/favicon.png">
 
     <link href="css/main.css" rel="stylesheet" type="text/css" media="screen">

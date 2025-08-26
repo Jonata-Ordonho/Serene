@@ -45,9 +45,8 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_cpf'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Clínica Escola Gilberto Gomes de Oliveira</title>
+    <title>SERENE</title>
     <meta name="author" content="NDW - Núcleo de Desenvolvimento Web">
-    <meta name="reply-to" content="web@unirios.edu.br">
     <meta name="robots" content="noindex,nofollow">
     <link rel="icon" href="imagens/favicon.png">
     <link href="css/css.css" rel="stylesheet" type="text/css" media="screen">

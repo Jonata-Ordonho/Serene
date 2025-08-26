@@ -1,0 +1,21 @@
+<?php
+
+namespace DataBase;
+
+class Connections{
+    private $pdo;
+
+    public function __construct(){
+        $url = 'mysql:host=localhost;dbname=serene';
+        $user = 'root';
+        $passwd = '';
+
+        $this->pdo = new \PDO($url, $user, $passwd);
+        //$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo->exec('set names utf8');
+    }
+
+    public function connectBd(){
+        return $this->pdo;
+    }
+}
