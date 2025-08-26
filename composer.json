@@ -1,0 +1,9 @@
+{
+    "name": "hackathon/serene",
+    "autoload": {
+        "psr-4": {
+            "App\\": "Controllers/",
+            "DataBase\\": "connections/"
+        }
+    }
+}
