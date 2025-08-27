@@ -15,9 +15,13 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_senha'])) {
     $email = $_POST['usu_email'];
     $senha = $_POST['usu_senha'];
 
-    $dadosLogin = $controllerUsuario->login($email, $email);
+    $dadosLogin = $controllerUsuario->login($email, $senha);
 
-    if($dadosLogin){
+    if($dadosLogin != null){
+        $_SESSION['usu_nome'] = $dadosLogin['usuario_nome'];
+        $_SESSION['usu_email'] = $dadosLogin['usuario_email'];
+        $_SESSION['usu_id'] = $dadosLogin['usuario_id'];
+        
         header("Location: view/dashboard.php");
     }else{
         header("Location: index.php?erro_login");
@@ -57,6 +61,7 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_senha'])) {
 
                     <label for="usu_senha">Senha</label>
                     <input type="password" name="usu_senha" id="usu_senha">
+                    
                     <input type="submit" name="entrar" id="entrar" class="but" value="Entrar">
                 </fieldset>
             </form>

@@ -67,78 +67,9 @@ class FormularioController
             }
             $dados_colaborador = $stmt_colaborador->fetch(\PDO::FETCH_ASSOC);
 
-            $query_resultados_colaborador = "SELECT * FROM respostas WHERE resposta_colaborador_id = :colaborador_id AND resposta_data_registro = :data_atual ORDER BY resultado_id DESC LIMIT 1";
-            $stmt_resultados_colaborador = $this->conn->connectBd()->prepare($query_resultados_colaborador);
-            $stmt_resultados_colaborador->bindValue(':colaborador_id', $dados_colaborador['colaborador_id'], \PDO::PARAM_INT);
-            $stmt_resultados_colaborador->bindValue(':data_atual', date('Y-m-d'), \PDO::PARAM_STR);
-            $stmt_resultados_colaborador->execute();
-
-            if ($stmt_resultados_colaborador->rowCount() == 0) {
+            if ($dados_colaborador) {
                 return true;
             } else {
-                return false;
-            }
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function verificarColaborador($email, $cpf){
-        try {
-            $insert_colaborador = "INSERT INTO colaboradores (colaborador_setor_id, colaborador_nome, colaborador_email, colaborador_cpf, colaborador_funcao) VALUES (:setor_id, :nome, :email, :cpf, :funcao)";
-            $stmt_insert_colaborador = $this->conn->connectBd()->prepare($insert_colaborador);
-            $stmt_insert_colaborador->bindValue(':setor_id', $_SESSION['setor_id'], \PDO::PARAM_INT);
-            $stmt_insert_colaborador->bindValue(':nome', $_SESSION['nome'], \PDO::PARAM_STR);
-            $stmt_insert_colaborador->bindValue(':email', $email, \PDO::PARAM_STR);
-            $stmt_insert_colaborador->bindValue(':cpf', $cpf, \PDO::PARAM_STR);
-            $stmt_insert_colaborador->bindValue(':funcao', $_SESSION['funcao'], \PDO::PARAM_STR);
-            $stmt_insert_colaborador->execute();
-
-            $query_colaborador = "SELECT colaborador_id FROM colaboradores WHERE colaborador_email = :email AND colaborador_cpf = :cpf";
-            $stmt_colaborador = $this->conn->connectBd()->prepare($query_colaborador);
-            $stmt_colaborador->bindValue(':email', $email, \PDO::PARAM_STR);
-            $stmt_colaborador->bindValue(':cpf', $cpf, \PDO::PARAM_STR);
-            $stmt_colaborador->execute();
-
-            if ($stmt_colaborador->rowCount() == 0) {
-                return false;
-            }else{
-                return $stmt_colaborador->fetch(\PDO::FETCH_ASSOC);
-            }
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function inserirColaborador($email, $cpf){
-        try {
-            $query_colaborador = "SELECT * FROM colaboradores WHERE colaborador_email = :email AND colaborador_cpf = :cpf";
-            $stmt_colaborador = $this->conn->connectBd()->prepare($query_colaborador);
-            $stmt_colaborador->bindValue(':email', $email, \PDO::PARAM_STR);
-            $stmt_colaborador->bindValue(':cpf', $cpf, \PDO::PARAM_STR);
-            $stmt_colaborador->execute();
-
-            if ($stmt_colaborador->rowCount() == 0) {
-                return false;
-            }else{
-                return $stmt_colaborador->fetch(\PDO::FETCH_ASSOC);
-            }
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-
-    public function verificarDataFormulario($id){
-        try {
-            $query_resultados_colaborador = "SELECT * FROM respostas WHERE resultado_colaborador_id = :colaborador_id AND resultado_data_registro = :data_atual ORDER BY resultado_id DESC LIMIT 1";
-            $stmt_resultados_colaborador = $this->conn->connectBd()->prepare($query_resultados_colaborador);
-            $stmt_resultados_colaborador->bindValue(':colaborador_id', $id, \PDO::PARAM_INT);
-            $stmt_resultados_colaborador->bindValue(':data_atual', date('Y-m-d'), \PDO::PARAM_STR);
-            $stmt_resultados_colaborador->execute();
-
-            if ($stmt_resultados_colaborador->rowCount() == 0) {
-                return true;
-            }else{
                 return false;
             }
         } catch (\PDOException $e) {

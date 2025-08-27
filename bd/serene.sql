@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 26/08/2025 às 20:14
--- Versão do servidor: 8.2.0
--- Versão do PHP: 7.4.33
+-- Host: 127.0.0.1
+-- Tempo de geração: 27/08/2025 às 21:21
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,14 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `colaboradores`
 --
 
-DROP TABLE IF EXISTS `colaboradores`;
-CREATE TABLE IF NOT EXISTS `colaboradores` (
-  `colaborador_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `colaborador_setor_id` smallint UNSIGNED NOT NULL,
-  `colaborador_nome` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+CREATE TABLE `colaboradores` (
+  `colaborador_id` int(10) UNSIGNED NOT NULL,
+  `colaborador_setor_id` smallint(5) UNSIGNED NOT NULL,
+  `colaborador_nome` varchar(255) NOT NULL,
   `colaborador_email` varchar(255) NOT NULL,
   `colaborador_cpf` char(11) NOT NULL,
-  `colaborador_funcao` varchar(255) NOT NULL,
-  PRIMARY KEY (`colaborador_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
+  `colaborador_funcao` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `colaboradores`
@@ -53,7 +51,8 @@ INSERT INTO `colaboradores` (`colaborador_id`, `colaborador_setor_id`, `colabora
 (8, 4, 'Helena Martins', 'helena.martins@empresa.com', '12345678907', 'Analista de Marketing'),
 (9, 4, 'Igor Santos', 'igor.santos@empresa.com', '12345678908', 'Designer'),
 (10, 5, 'Juliana Alves', 'juliana.alves@empresa.com', '12345678909', 'Supervisor de Operações'),
-(11, 5, 'Lucas Pereira', 'lucas.pereira@empresa.com', '12345678910', 'Auxiliar de Operações');
+(11, 5, 'Lucas Pereira', 'lucas.pereira@empresa.com', '12345678910', 'Auxiliar de Operações'),
+(12, 1, 'Jorge Paulo', 'jonata.murdoc@gmail.com', '07316223596', 'Estagiario');
 
 -- --------------------------------------------------------
 
@@ -61,19 +60,17 @@ INSERT INTO `colaboradores` (`colaborador_id`, `colaborador_setor_id`, `colabora
 -- Estrutura para tabela `respostas`
 --
 
-DROP TABLE IF EXISTS `respostas`;
-CREATE TABLE IF NOT EXISTS `respostas` (
-  `resposta_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `resposta_data_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `resposta_colaborador_id` int UNSIGNED NOT NULL,
-  `resposta_questao_1` smallint UNSIGNED NOT NULL,
-  `resposta_questao_2` smallint NOT NULL,
-  `resposta_questao_3` smallint NOT NULL,
-  `resposta_questao_4` smallint NOT NULL,
-  `resposta_questao_5` smallint NOT NULL,
-  `resposta_questao_observacao` text,
-  PRIMARY KEY (`resposta_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 ;
+CREATE TABLE `respostas` (
+  `resposta_id` int(10) UNSIGNED NOT NULL,
+  `resposta_data_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `resposta_colaborador_id` int(10) UNSIGNED NOT NULL,
+  `resposta_questao_1` smallint(5) UNSIGNED NOT NULL,
+  `resposta_questao_2` smallint(6) NOT NULL,
+  `resposta_questao_3` smallint(6) NOT NULL,
+  `resposta_questao_4` smallint(6) NOT NULL,
+  `resposta_questao_5` smallint(6) NOT NULL,
+  `resposta_questao_observacao` text DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `respostas`
@@ -149,7 +146,8 @@ INSERT INTO `respostas` (`resposta_id`, `resposta_data_registro`, `resposta_cola
 (67, '2025-07-18 18:20:00', 1, 5, 5, 5, 5, 5, 'Perfeito'),
 (68, '2025-07-19 11:55:00', 2, 3, 4, 3, 4, 3, 'Ok'),
 (69, '2025-07-19 17:15:00', 3, 4, 5, 4, 5, 5, 'Muito bom'),
-(70, '2025-07-20 14:35:00', 4, 5, 5, 5, 5, 5, 'Excelente dia');
+(70, '2025-07-20 14:35:00', 4, 5, 5, 5, 5, 5, 'Excelente dia'),
+(71, '2025-08-27 14:08:22', 1, 2, 4, 5, 2, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,12 +155,10 @@ INSERT INTO `respostas` (`resposta_id`, `resposta_data_registro`, `resposta_cola
 -- Estrutura para tabela `setores`
 --
 
-DROP TABLE IF EXISTS `setores`;
-CREATE TABLE IF NOT EXISTS `setores` (
-  `setor_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `setor_nome` varchar(255) NOT NULL,
-  PRIMARY KEY (`setor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ;
+CREATE TABLE `setores` (
+  `setor_id` int(5) UNSIGNED NOT NULL,
+  `setor_nome` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Despejando dados para a tabela `setores`
@@ -181,16 +177,77 @@ INSERT INTO `setores` (`setor_id`, `setor_nome`) VALUES
 -- Estrutura para tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `usuario_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `usuario_email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `usuario_senha` char(40) CHARACTER SET utf8mb4 NOT NULL,
-  `usuario_data_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usuario_nome` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `usuario_status` enum('ativo','inativo') CHARACTER SET utf8mb4 NOT NULL DEFAULT 'ativo',
-  PRIMARY KEY (`usuario_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ;
+CREATE TABLE `usuarios` (
+  `usuario_id` smallint(5) UNSIGNED NOT NULL,
+  `usuario_email` varchar(255) NOT NULL,
+  `usuario_senha` char(40) NOT NULL,
+  `usuario_data_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `usuario_nome` varchar(255) NOT NULL,
+  `usuario_status` enum('ativo','inativo') NOT NULL DEFAULT 'ativo'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario_id`, `usuario_email`, `usuario_senha`, `usuario_data_registro`, `usuario_nome`, `usuario_status`) VALUES
+(1, 'admin@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2025-08-27 14:31:40', 'admin', 'ativo');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `colaboradores`
+--
+ALTER TABLE `colaboradores`
+  ADD PRIMARY KEY (`colaborador_id`);
+
+--
+-- Índices de tabela `respostas`
+--
+ALTER TABLE `respostas`
+  ADD PRIMARY KEY (`resposta_id`);
+
+--
+-- Índices de tabela `setores`
+--
+ALTER TABLE `setores`
+  ADD PRIMARY KEY (`setor_id`);
+
+--
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario_id`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `colaboradores`
+--
+ALTER TABLE `colaboradores`
+  MODIFY `colaborador_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `respostas`
+--
+ALTER TABLE `respostas`
+  MODIFY `resposta_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT de tabela `setores`
+--
+ALTER TABLE `setores`
+  MODIFY `setor_id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `usuario_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

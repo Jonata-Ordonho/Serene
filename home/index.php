@@ -11,9 +11,9 @@ use App\FormularioController;
 
 $loginFormAction = $_SERVER['PHP_SELF'];
 
-$_SESSION['setor_id'] = '1';
-$_SESSION['nome'] = 'Jorge Paulo';
-$_SESSION['funcao'] = 'Estagiario';
+$_SESSION['setor_id'] = '5';
+$_SESSION['nome'] = 'joao';
+$_SESSION['funcao'] = 'assimstente adm';
 
 $controllerFormulario = new FormularioController;
 
@@ -30,8 +30,6 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_cpf'])) {
 
         if ($verificar_colaborador) {
             header("Location: formulario.php");
-        } else {
-            header("Location: index.php?erro_formulario=true");
         }
     } else {
         header("Location: index.php?erro_cpf=true");
@@ -46,9 +44,8 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_cpf'])) {
 <head>
     <meta charset="utf-8">
     <title>SERENE</title>
-    <meta name="author" content="NDW - Núcleo de Desenvolvimento Web">
     <meta name="robots" content="noindex,nofollow">
-    <link rel="icon" href="imagens/favicon.png">
+    <!-- <link rel="icon" href="imagens/favicon.png"> -->
     <link href="css/css.css" rel="stylesheet" type="text/css" media="screen">
 </head>
 
@@ -62,10 +59,9 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_cpf'])) {
             <?php if (isset($_GET["sucesso"]) && $_GET["sucesso"] == true) { ?>
                 <span>Obrigado pela sua resposta!</span>
             <?php } else { ?>
-                <?php if (isset($_GET["erro_formulario"])) { ?>
-                    <span class="alerta">Você já respondeu o furmulário hoje</span>
+                <?php if (isset($_GET["erro_cpf"])) { ?>
+                    <span class="alerta">CPF inválido!</span>
                 <?php } ?>
-
                 <form name="form1" id="form1" method="POST" action="">
                     <fieldset>
                         <legend>Login</legend>

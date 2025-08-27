@@ -1,17 +1,20 @@
 <?php
 
 use App\ResultadoController;
-$controllerUsuario = new ResultadoController;
-$setores = $controllerUsuario->setores();
+
+$controllerResultado = new ResultadoController;
+$setores_menu = $controllerResultado->setores();
+
 
 ?>
 <nav id="menu">
     <ul>
         <li><span class="titulo"></span>
             <ul>
-            <?php foreach ($setores as $setor) { ?>
-                <li><a href="resultados_setor.php?id=<?php echo $setor['setor_id']; ?>" title="<?php echo $setor['setor_nome']; ?>" class=""><?php echo $setor['setor_nome']; ?></a></li>
-            <?php }  ?>
+                <li><a href="dashboard.php" title="Dashboard" class="">Dashboard</a></li>
+                <?php foreach ($setores_menu as $set) { ?>
+                    <li><a href="resultados_setor.php?id=<?php echo $set['setor_id']; ?>" title="<?php echo $set['setor_nome']; ?>" class=""><?php echo $set['setor_nome']; ?></a></li>
+                <?php }  ?>
             </ul>
         </li>
     </ul>

@@ -12,13 +12,15 @@ use App\FormularioController;
 $controllerFormulario = new FormularioController;
 
 if (isset($_POST['pergunta1']) && isset($_POST['pergunta2']) && isset($_POST['pergunta3']) && isset($_POST['pergunta4']) && isset($_POST['pergunta5'])) {
-    
-    if(isset($_POST['observacao']) && $_POST['observacao'] != ''){ $obs = $_POST['observacao']; }else{ $obs = null; }
+    if (isset($_POST['observacao']) && $_POST['observacao'] != '') {
+        $obs = $_POST['observacao'];
+    } else {
+        $obs = null;
+    }
     $dados = $controllerFormulario->insertRespostas($_POST['pergunta1'], $_POST['pergunta2'], $_POST['pergunta3'], $_POST['pergunta4'], $_POST['pergunta5'], $obs);
 
     header("Location: index.php?sucesso=true");
 }
-
 
 ?>
 
@@ -29,15 +31,12 @@ if (isset($_POST['pergunta1']) && isset($_POST['pergunta2']) && isset($_POST['pe
     <meta charset="utf-8">
     <title>SERENE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="GTEC - Gerência de Tecnologia">
-    <meta name="reply-to" content="web@unirios.edu.br">
     <meta name="robots" content="noindex,nofollow">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
-    <link rel="icon" href="images/favicon.png">
+    <!-- <link rel="icon" href="images/favicon.png"> -->
 
-    <link href="css/main.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="css/internas.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="css/css.css" rel="stylesheet" type="text/css" media="screen">
 </head>
 
 <body id="internas">
