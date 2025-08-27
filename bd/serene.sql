@@ -31,12 +31,12 @@ DROP TABLE IF EXISTS `colaboradores`;
 CREATE TABLE IF NOT EXISTS `colaboradores` (
   `colaborador_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `colaborador_setor_id` smallint UNSIGNED NOT NULL,
-  `colaborador_nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `colaborador_nome` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
   `colaborador_email` varchar(255) NOT NULL,
   `colaborador_cpf` char(11) NOT NULL,
   `colaborador_funcao` varchar(255) NOT NULL,
   PRIMARY KEY (`colaborador_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Despejando dados para a tabela `colaboradores`
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `respostas` (
   `resposta_questao_5` smallint NOT NULL,
   `resposta_questao_observacao` text,
   PRIMARY KEY (`resposta_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Despejando dados para a tabela `respostas`
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `setores` (
   `setor_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
   `setor_nome` varchar(255) NOT NULL,
   PRIMARY KEY (`setor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Despejando dados para a tabela `setores`
@@ -184,13 +184,13 @@ INSERT INTO `setores` (`setor_id`, `setor_nome`) VALUES
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuario_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `usuario_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `usuario_senha` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `usuario_email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `usuario_senha` char(40) CHARACTER SET utf8mb4 NOT NULL,
   `usuario_data_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usuario_nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `usuario_status` enum('ativo','inativo') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'ativo',
+  `usuario_nome` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `usuario_status` enum('ativo','inativo') CHARACTER SET utf8mb4 NOT NULL DEFAULT 'ativo',
   PRIMARY KEY (`usuario_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

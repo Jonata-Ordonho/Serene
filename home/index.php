@@ -62,7 +62,6 @@ if (isset($_POST['usu_email']) && isset($_POST['usu_cpf'])) {
             <?php if (isset($_GET["sucesso"]) && $_GET["sucesso"] == true) { ?>
                 <span>Obrigado pela sua resposta!</span>
             <?php } else { ?>
-                <span class="alerta">CPF inválido!</span>
                 <?php if (isset($_GET["erro_formulario"])) { ?>
                     <span class="alerta">Você já respondeu o furmulário hoje</span>
                 <?php } ?>
